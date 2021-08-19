@@ -1,0 +1,36 @@
+<div class="row">
+	<div class="col-md-12 col-md-offset-3">
+		<form [formGroup]="orderDetails" id="msform">
+			<fieldset>
+				<h2 class="fs-title">Bloomberg  Details</h2>
+        <label>From Currency ISO Code</label>
+        <select formControlName="orderingCurrency" class="form-select form-select-md mb-2" id="from">
+          <option *ngFor="let code of ISOCODES; let i = index" [attr.data-index]="i" [value]="code">
+            {{code}}
+          </option>
+        </select>
+				<!-- <input type="text"  formControlName="orderingCurrency"  placeholder="From Currency ISO Code ex. EUR "/> -->
+        <div *ngIf="orderDetails.controls.orderingCurrency.errors && (orderDetails.controls.orderingCurrency.dirty || orderDetails.controls.orderingCurrency.touched)">
+					<div *ngIf="order.orderingCurrency.errors?.required" class="worning">From Currency ISO Code  is required</div>
+        </div>
+        <label>To Currency ISO Code</label>
+        <select formControlName="toISOCode" class="form-select form-select-md mb-2" id="to">
+          <option *ngFor="let code of ISOCODES; let i = index" [attr.data-index]="i" [value]="code">
+            {{code}}
+          </option>
+        </select>
+				<!-- <input type="text"  formControlName="toISOCode" name="toISOCode" placeholder="To Currency ISO Code ex. USD"/> -->
+				<div *ngIf="orderDetails.controls.toISOCode.errors && (orderDetails.controls.toISOCode.dirty || orderDetails.controls.toISOCode.touched)">
+					<div *ngIf="order.toISOCode.errors?.required" class="worning">To Currency ISO Code is required</div>
+				</div>
+				<input type="number"  formControlName="dealAmount" name="dealAmount" placeholder="Amount" id="Amount"/>
+				<div *ngIf="orderDetails.controls.dealAmount.errors && (orderDetails.controls.dealAmount.dirty || orderDetails.controls.dealAmount.touched)">
+					<div *ngIf="order.dealAmount.errors?.required" class="worning">Amount is required</div>
+				</div>
+        <button mat-raised-button color="primary" type="submit"  (click)="submit()">Submit</button>
+				<!-- <input  matButton type="button" name="Submit" class="next action-button" value="Submit"/> -->
+			</fieldset>
+		</form>
+
+	</div>
+</div>
